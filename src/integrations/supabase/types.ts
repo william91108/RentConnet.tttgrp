@@ -370,6 +370,7 @@ export type Database = {
       }
       rooms: {
         Row: {
+          area: number | null
           created_at: string
           house_id: string
           id: string
@@ -378,8 +379,10 @@ export type Database = {
           rent_due_day: number | null
           tenant_id: string | null
           updated_at: string
+          window_type: string
         }
         Insert: {
+          area?: number | null
           created_at?: string
           house_id: string
           id?: string
@@ -388,8 +391,10 @@ export type Database = {
           rent_due_day?: number | null
           tenant_id?: string | null
           updated_at?: string
+          window_type?: string
         }
         Update: {
+          area?: number | null
           created_at?: string
           house_id?: string
           id?: string
@@ -398,6 +403,7 @@ export type Database = {
           rent_due_day?: number | null
           tenant_id?: string | null
           updated_at?: string
+          window_type?: string
         }
         Relationships: [
           {
