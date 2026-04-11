@@ -30,7 +30,7 @@ const tenantLinks = [
 ];
 
 export function AppSidebar() {
-  const { role, signOut, user } = useAuth();
+  const { role, signOut, user, previewRole, setPreviewRole } = useAuth();
   const location = useLocation();
   const links = role === "admin" ? adminLinks : tenantLinks;
 
