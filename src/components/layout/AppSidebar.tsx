@@ -3,7 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import {
   Home, Building2, AlertTriangle, Bell, FileText,
   Phone, BookOpen, Settings, LogOut, Shield, Users,
-  LifeBuoy
+  LifeBuoy, ArrowLeftRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
