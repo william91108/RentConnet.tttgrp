@@ -62,6 +62,20 @@ export function AppSidebar() {
       </nav>
 
       <div className="border-t border-sidebar-border p-4 space-y-2">
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full justify-start gap-2 text-xs"
+          onClick={() => setPreviewRole(role === "admin" ? "tenant" : "admin")}
+        >
+          <ArrowLeftRight className="h-3.5 w-3.5" />
+          Switch to {role === "admin" ? "Tenant" : "Admin"} View
+        </Button>
+        {previewRole && (
+          <p className="text-xs text-amber-600 font-medium px-1">
+            ⚠ Previewing as {role}
+          </p>
+        )}
         <p className="text-xs text-sidebar-foreground/50 truncate px-1">
           {user?.email}
         </p>
