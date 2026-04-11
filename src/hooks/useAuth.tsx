@@ -10,6 +10,8 @@ interface AuthContextType {
   role: UserRole;
   loading: boolean;
   signOut: () => Promise<void>;
+  previewRole: UserRole;
+  setPreviewRole: (role: UserRole) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
