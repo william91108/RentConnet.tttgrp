@@ -11,6 +11,7 @@ import TenantDashboard from "./pages/TenantDashboard";
 import ReportIssue from "./pages/ReportIssue";
 import EmergencyInfo from "./pages/EmergencyInfo";
 import NotFound from "./pages/NotFound";
+import Properties from "./pages/Properties";
 
 const queryClient = new QueryClient();
 
