@@ -11,6 +11,7 @@ import TenantDashboard from "./pages/TenantDashboard";
 import ReportIssue from "./pages/ReportIssue";
 import EmergencyInfo from "./pages/EmergencyInfo";
 import NotFound from "./pages/NotFound";
+import Properties from "./pages/Properties";
 
 const queryClient = new QueryClient();
 
@@ -49,7 +50,7 @@ const App = () => (
             <Route path="/dashboard" element={<ProtectedRoute><DashboardRouter /></ProtectedRoute>} />
             <Route path="/report-issue" element={<ProtectedRoute><ReportIssue /></ProtectedRoute>} />
             <Route path="/emergency" element={<ProtectedRoute><EmergencyInfo /></ProtectedRoute>} />
-            <Route path="/properties" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+            <Route path="/properties" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
             <Route path="/issues" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
             <Route path="/notices" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
             <Route path="/documents" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
