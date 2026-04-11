@@ -20,6 +20,8 @@ const AuthContext = createContext<AuthContextType>({
   role: null,
   loading: true,
   signOut: async () => {},
+  previewRole: null,
+  setPreviewRole: () => {},
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
