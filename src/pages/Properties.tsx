@@ -301,7 +301,7 @@ export default function Properties() {
               </div>
               <div>
                 <Label>Room Number</Label>
-                <Input value={roomNumber} onChange={(e) => setRoomNumber(e.target.value)} placeholder="e.g. Room 1" />
+                <Input value={roomNumber} onChange={(e) => setRoomNumber(e.target.value)} placeholder="e.g. 1" />
               </div>
             </div>
             <p className="text-xs text-muted-foreground">
