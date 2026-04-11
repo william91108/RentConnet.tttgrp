@@ -78,12 +78,10 @@ export default function Properties() {
 
   const openEditRoom = (room: Room) => {
     setEditingRoom(room);
-    const parts = room.name.split(" ");
-    // Try to parse "Unit X Room Y" format
-    const unitIdx = parts.indexOf("Unit");
-    const roomIdx = parts.indexOf("Room");
-    setHouseName(unitIdx >= 0 && unitIdx + 1 < parts.length ? parts.slice(unitIdx + 1, roomIdx >= 0 ? roomIdx : undefined).join(" ") : currentHouse?.name ?? "");
-    setRoomNumber(roomIdx >= 0 && roomIdx + 1 < parts.length ? parts.slice(roomIdx + 1).join(" ") : room.name);
+    setHouseName(currentHouse?.name ?? "");
+    // Extract room number from name like "Unit 1 Room 3" → "3"
+    const roomMatch = room.name.match(/Room\s+(.+)$/i);
+    setRoomNumber(roomMatch ? roomMatch[1] : room.name);
     setArea(room.area?.toString() ?? "");
     setWindowType(room.window_type ?? "window");
     setRentAmount(room.rent_amount?.toString() ?? "");
@@ -303,7 +301,7 @@ export default function Properties() {
               </div>
               <div>
                 <Label>Room Number</Label>
-                <Input value={roomNumber} onChange={(e) => setRoomNumber(e.target.value)} placeholder="e.g. Room 1" />
+                <Input value={roomNumber} onChange={(e) => setRoomNumber(e.target.value)} placeholder="e.g. 1" />
               </div>
             </div>
             <p className="text-xs text-muted-foreground">
