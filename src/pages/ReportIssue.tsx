@@ -71,6 +71,15 @@ export default function ReportIssue() {
     if (error) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
     } else {
+      // Notify admin about new issue
+      await supabase.functions.invoke("notify-issue-update", {
+        body: {
+          issueTitle: `${category} — ${location}`,
+          recipientEmail: "", // admin will be looked up server-side
+          message: description,
+          type: "new_issue",
+        },
+      });
       toast({ title: "Issue reported", description: "We've received your report and will respond shortly." });
       navigate("/my-issues");
     }
