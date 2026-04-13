@@ -196,6 +196,41 @@ export type Database = {
           },
         ]
       }
+      issue_messages: {
+        Row: {
+          created_at: string
+          id: string
+          issue_id: string
+          message: string
+          sender_id: string
+          sender_role: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          issue_id: string
+          message?: string
+          sender_id: string
+          sender_role?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          issue_id?: string
+          message?: string
+          sender_id?: string
+          sender_role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "issue_messages_issue_id_fkey"
+            columns: ["issue_id"]
+            isOneToOne: false
+            referencedRelation: "issues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       issues: {
         Row: {
           category: string
@@ -341,8 +376,10 @@ export type Database = {
       profiles: {
         Row: {
           created_at: string
+          date_of_birth: string | null
           email: string
           full_name: string
+          gender: string | null
           id: string
           phone: string | null
           updated_at: string
@@ -350,8 +387,10 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          date_of_birth?: string | null
           email?: string
           full_name?: string
+          gender?: string | null
           id?: string
           phone?: string | null
           updated_at?: string
@@ -359,8 +398,10 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          date_of_birth?: string | null
           email?: string
           full_name?: string
+          gender?: string | null
           id?: string
           phone?: string | null
           updated_at?: string
