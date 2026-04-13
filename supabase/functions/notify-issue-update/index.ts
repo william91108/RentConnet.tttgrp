@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
     return new Response('ok', { headers: corsHeaders })
   }
 
-  try {
+  const { createClient } = await import('https://esm.sh/@supabase/supabase-js@2.95.3')
     const { issueId, issueTitle, recipientEmail, message, type } = await req.json()
 
     if (!recipientEmail || !issueTitle) {
