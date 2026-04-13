@@ -124,7 +124,7 @@ export default function AdminIssues() {
   const updateStatus = async (issueId: string, newStatus: string) => {
     const { error } = await supabase
       .from("issues")
-      .update({ status: newStatus })
+      .update({ status: newStatus as any })
       .eq("id", issueId);
 
     if (!error) {
