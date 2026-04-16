@@ -8,6 +8,7 @@ import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import AdminDashboard from "./pages/AdminDashboard";
 import TenantDashboard from "./pages/TenantDashboard";
+import HouseRules from "./pages/HouseRules";
 import ReportIssue from "./pages/ReportIssue";
 import EmergencyInfo from "./pages/EmergencyInfo";
 import NotFound from "./pages/NotFound";
@@ -63,7 +64,7 @@ const App = () => (
             <Route path="/documents" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
             <Route path="/info-centre" element={<ProtectedRoute><InformationCenter /></ProtectedRoute>} />
             <Route path="/contacts" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-            <Route path="/house-rules" element={<ProtectedRoute><TenantDashboard /></ProtectedRoute>} />
+            <Route path="/house-rules" element={<ProtectedRoute><HouseRules /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
