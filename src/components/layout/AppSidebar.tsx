@@ -24,7 +24,7 @@ const tenantLinks = [
   { to: "/my-issues", icon: Shield, label: "My Issues" },
   { to: "/notices", icon: Bell, label: "Notices" },
   { to: "/house-rules", icon: BookOpen, label: "House Rules" },
-  { to: "/documents", icon: FileText, label: "Documents" },
+  { to: "/info-centre", icon: FileText, label: "Information Centre" },
   { to: "/emergency", icon: LifeBuoy, label: "Emergency Info" },
   { to: "/contacts", icon: Phone, label: "Contacts" },
 ];
