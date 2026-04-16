@@ -15,6 +15,7 @@ import Properties from "./pages/Properties";
 import AdminIssues from "./pages/AdminIssues";
 import AdminTenants from "./pages/AdminTenants";
 import TenantIssues from "./pages/TenantIssues";
+import Notices from "./pages/Notices";
 
 const queryClient = new QueryClient();
 

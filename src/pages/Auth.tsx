@@ -144,6 +144,14 @@ export default function Auth() {
                 <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} placeholder="••••••••" />
               </div>
             )}
+            {mode === "signup" && (
+              <p className="text-xs text-muted-foreground text-center">
+                By signing up, you agree to our{" "}
+                <span className="text-primary font-medium">Terms and Conditions</span>{" "}
+                and{" "}
+                <span className="text-primary font-medium">Privacy Policy</span>.
+              </p>
+            )}
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? "Please wait..." : mode === "login" ? "Sign In" : mode === "signup" ? "Create Account" : "Send Reset Link"}
             </Button>
