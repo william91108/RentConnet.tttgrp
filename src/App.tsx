@@ -18,6 +18,8 @@ import AdminTenants from "./pages/AdminTenants";
 import TenantIssues from "./pages/TenantIssues";
 import Notices from "./pages/Notices";
 import InformationCenter from "./pages/InformationCenter";
+import UsefulContacts from "./pages/UsefulContacts";
+import Documents from "./pages/Documents";
 
 const queryClient = new QueryClient();
 
