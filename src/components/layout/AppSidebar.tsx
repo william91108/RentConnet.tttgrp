@@ -14,7 +14,7 @@ const adminLinks = [
   { to: "/issues", icon: AlertTriangle, label: "Issues" },
   { to: "/notices", icon: Bell, label: "Notices" },
   { to: "/documents", icon: FileText, label: "Documents" },
-  { to: "/contacts", icon: Phone, label: "Contacts" },
+  { to: "/contacts", icon: Phone, label: "Useful Contacts" },
   { to: "/tenants", icon: Users, label: "Tenants" },
 ];
 
