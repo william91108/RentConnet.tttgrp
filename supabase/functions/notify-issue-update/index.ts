@@ -39,23 +39,17 @@ Deno.serve(async (req) => {
         ctaUrl: `${APP_URL}/admin/issues`,
       })
 
-      // Notify all admins via in-app notice
+      // Look up admin emails so we can email them all
       const { data: admins } = await supabase
         .from('user_roles')
         .select('user_id')
         .eq('role', 'admin')
-      if (admins?.length) {
-        for (const admin of admins) {
-          await supabase.from('notices').insert({
-            title: `New Issue: ${issueTitle}`,
-            content: plainContent,
-            created_by: admin.user_id,
-            notice_type: 'maintenance',
-            target_all_house: false,
-            target_user_id: admin.user_id,
-          })
-        }
-      }
+      const adminIds = (admins ?? []).map((a: any) => a.user_id)
+      const { data: adminProfiles } = adminIds.length
+        ? await supabase.from('profiles').select('email').in('user_id', adminIds)
+        : { data: [] as any[] }
+      const adminEmails = (adminProfiles ?? []).map((p: any) => p.email).filter(Boolean)
+      ;(body as any).__multiRecipients = adminEmails
     } else if (type === 'admin_reply') {
       const { issueTitle, message, issueId } = body
       subject = `Update on your issue: ${issueTitle}`
