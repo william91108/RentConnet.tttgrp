@@ -79,18 +79,49 @@ export default function Notices() {
       target_all_house: targetHouse === "all",
       house_id: targetHouse !== "all" ? targetHouse : null,
     });
-    setLoading(false);
     if (error) {
+      setLoading(false);
       toast({ title: "Error", description: error.message, variant: "destructive" });
-    } else {
-      toast({ title: "Notice sent" });
-      setTitle("");
-      setContent("");
-      setNoticeType("general");
-      setTargetHouse("all");
-      setDialogOpen(false);
-      fetchNotices();
+      return;
     }
+
+    // Email tenants of the targeted house(s)
+    try {
+      let tenantQuery = supabase.from("rooms").select("tenant_id, house_id").not("tenant_id", "is", null);
+      if (targetHouse !== "all") tenantQuery = tenantQuery.eq("house_id", targetHouse);
+      const { data: rooms } = await tenantQuery;
+      const tenantIds = Array.from(new Set((rooms ?? []).map((r) => r.tenant_id))).filter(Boolean) as string[];
+
+      if (tenantIds.length) {
+        const { data: profiles } = await supabase
+          .from("profiles")
+          .select("email")
+          .in("user_id", tenantIds);
+        await Promise.all(
+          (profiles ?? []).map((p) =>
+            supabase.functions.invoke("notify-issue-update", {
+              body: {
+                type: "new_notice",
+                recipientEmail: p.email,
+                noticeTitle: title.trim(),
+                noticeContent: content.trim(),
+              },
+            }),
+          ),
+        );
+      }
+    } catch (e) {
+      console.error("Failed to send notice emails", e);
+    }
+
+    setLoading(false);
+    toast({ title: "Notice sent", description: "Tenants will be emailed." });
+    setTitle("");
+    setContent("");
+    setNoticeType("general");
+    setTargetHouse("all");
+    setDialogOpen(false);
+    fetchNotices();
   };
 
   const handleAcknowledge = async (noticeId: string) => {

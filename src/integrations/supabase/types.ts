@@ -409,9 +409,34 @@ export type Database = {
         }
         Relationships: []
       }
+      room_assignments: {
+        Row: {
+          ended_at: string | null
+          id: string
+          room_id: string
+          started_at: string
+          tenant_id: string
+        }
+        Insert: {
+          ended_at?: string | null
+          id?: string
+          room_id: string
+          started_at?: string
+          tenant_id: string
+        }
+        Update: {
+          ended_at?: string | null
+          id?: string
+          room_id?: string
+          started_at?: string
+          tenant_id?: string
+        }
+        Relationships: []
+      }
       rooms: {
         Row: {
           area: number | null
+          assigned_at: string | null
           created_at: string
           house_id: string
           id: string
@@ -424,6 +449,7 @@ export type Database = {
         }
         Insert: {
           area?: number | null
+          assigned_at?: string | null
           created_at?: string
           house_id: string
           id?: string
@@ -436,6 +462,7 @@ export type Database = {
         }
         Update: {
           area?: number | null
+          assigned_at?: string | null
           created_at?: string
           house_id?: string
           id?: string
@@ -455,6 +482,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      tenant_notes: {
+        Row: {
+          category: string
+          created_at: string
+          created_by: string | null
+          id: string
+          note: string
+          tenant_id: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          note?: string
+          tenant_id: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          note?: string
+          tenant_id?: string
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {
