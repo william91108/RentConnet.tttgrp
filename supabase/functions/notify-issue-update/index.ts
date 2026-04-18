@@ -78,29 +78,32 @@ Deno.serve(async (req) => {
       })
     }
 
-    // Try sending via Resend if API key present, else log
+    // Build recipient list — single or multi
+    const multi = ((body as any).__multiRecipients as string[] | undefined) ?? []
+    const recipients = multi.length ? multi : (recipientEmail ? [recipientEmail] : [])
+
     const resendKey = Deno.env.get('RESEND_API_KEY')
-    if (resendKey && recipientEmail) {
-      const res = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${resendKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          from: 'RentConnect <onboarding@resend.dev>',
-          to: [recipientEmail],
-          subject,
-          html: htmlBody,
-        }),
-      })
-      const result = await res.json()
-      console.log('[notify] resend result', res.status, result)
-      if (!res.ok) {
-        console.error('[notify] Resend send failed', result)
+    if (resendKey && recipients.length) {
+      for (const to of recipients) {
+        const res = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${resendKey}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: 'RentConnect <onboarding@resend.dev>',
+            to: [to],
+            subject,
+            html: htmlBody,
+          }),
+        })
+        const result = await res.json()
+        console.log('[notify] resend ->', to, res.status, result)
+        if (!res.ok) console.error('[notify] Resend send failed for', to, result)
       }
     } else {
-      console.log('[notify] No RESEND_API_KEY configured or no recipient — email skipped, in-app only.')
+      console.log(`[notify] No RESEND_API_KEY configured or no recipient — email skipped. Would send to: ${recipients.join(', ')}`)
     }
 
     return new Response(JSON.stringify({ success: true }), {
