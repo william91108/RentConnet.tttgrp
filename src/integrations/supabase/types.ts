@@ -409,6 +409,47 @@ export type Database = {
         }
         Relationships: []
       }
+      rent_payments: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          room_id: string
+          updated_at: string
+          updated_by: string | null
+          week: number
+          year: number
+        }
+        Insert: {
+          amount?: number
+          created_at?: string
+          id?: string
+          room_id: string
+          updated_at?: string
+          updated_by?: string | null
+          week: number
+          year: number
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          room_id?: string
+          updated_at?: string
+          updated_by?: string | null
+          week?: number
+          year?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rent_payments_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "rooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       room_assignments: {
         Row: {
           ended_at: string | null

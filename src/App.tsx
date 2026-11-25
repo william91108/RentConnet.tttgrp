@@ -12,6 +12,7 @@ import HouseRules from "./pages/HouseRules";
 import ReportIssue from "./pages/ReportIssue";
 import EmergencyInfo from "./pages/EmergencyInfo";
 import NotFound from "./pages/NotFound";
+import RentTracker from "./pages/RentTracker";
 import Properties from "./pages/Properties";
 import AdminIssues from "./pages/AdminIssues";
 import AdminTenants from "./pages/AdminTenants";
@@ -59,6 +60,7 @@ const App = () => (
             <Route path="/report-issue" element={<ProtectedRoute><ReportIssue /></ProtectedRoute>} />
             <Route path="/emergency" element={<ProtectedRoute><EmergencyInfo /></ProtectedRoute>} />
             <Route path="/properties" element={<ProtectedRoute><Properties /></ProtectedRoute>} />
+            <Route path="/rent" element={<ProtectedRoute><RentTracker /></ProtectedRoute>} />
             <Route path="/issues" element={<ProtectedRoute><AdminIssues /></ProtectedRoute>} />
             <Route path="/tenants" element={<ProtectedRoute><AdminTenants /></ProtectedRoute>} />
             <Route path="/my-issues" element={<ProtectedRoute><TenantIssues /></ProtectedRoute>} />

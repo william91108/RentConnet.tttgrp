@@ -3,7 +3,7 @@ import { useAuth } from "@/hooks/useAuth";
 import {
   Home, Building2, AlertTriangle, Bell, FileText,
   Phone, BookOpen, Settings, LogOut, Shield, Users,
-  LifeBuoy, ArrowLeftRight
+  LifeBuoy, ArrowLeftRight, DollarSign
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 const adminLinks = [
   { to: "/dashboard", icon: Home, label: "Dashboard" },
   { to: "/properties", icon: Building2, label: "Properties" },
+  { to: "/rent", icon: DollarSign, label: "Rent" },
   { to: "/issues", icon: AlertTriangle, label: "Issues" },
   { to: "/notices", icon: Bell, label: "Notices" },
   { to: "/documents", icon: FileText, label: "Documents" },
